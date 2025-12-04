@@ -79,5 +79,8 @@ class StandardScalerClone(BaseEstimator, TransformerMixin):
 std_scaler = StandardScalerClone()
 std_scaler.fit(housing[['median_income']])
 std_scaler.transform(housing[['median_income']])
+
+# One more example is in fit we can use Kmeans to find the cluster center and use rbf in transform to find the similarity of each value in features with cluster center.
+cluster center: [5, 10, 30], X = 12, it will calculate the similarity and brings nonlinearity for model 
   ```
   
