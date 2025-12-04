@@ -41,4 +41,5 @@ D. Data has no skew but needs normalization
   - Much more easy way to do the above is using TransformedTargetRegressor(regression_model, transformer = anytransformer)
 
 #### Custom Transformers
-    
+  - By using sklearn.preprocessing FunctionTransformer(), we can pass a custom function and thereby we can also combine two features while computing.
+  
