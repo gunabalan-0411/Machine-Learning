@@ -1,17 +1,34 @@
+## Notes:
+
+
+
 ## Linear Regression
 
-### Before scaling:
-We need to check if the distribution is skewed to right or left, if not scaling will fit into the scale but training will get affect
-Normalization Transformation methods:
-  - to handle heavy right tail we can replace the values with square-root
-  - for really long tails we can replace with the *logarithm value* (np.log).
-  - rbf_kernel: method to find the similarity value with a given value for every features ( $exp( – γ (x – 35)² $)
-    - When a specific value range is important (house age 35), we then calculate similarity to specific value to check how the pricing changes depends on the age
+### Feature Transformation and Scaling:
+**If data is skewed → apply a transformer first, THEN apply a scaler.**
 
-### Feature scaling:
+Transformer: change the shape of the distribution
+  - Ex: log transform, square root, box-cox, RBF, Percentile, quantile transformer
+Scaling: Scaling NEVER changes the shape of the distribution. It only changes the size.
+  - Ex: StandardScaler, MinMaxScaler, RobustScaler
+    
+A. **Data is right-skewed (long tail)**
+  -   Log transform (best for multiplicative data)
+  -   Square root (mild skew)
+  Then apply StandardScaler or MinMaxScaler.
+B. Data has outliers
+  - RobustScaler (because it uses median + IQR → ignores outliers)
+  - Transform (log) → scale (RobustScaler)
+C. Data has multiple peaks (multimodal)
+  - Bucketizing (binning)
+  - One-hot encoding
+  - RBF kernel (for similarity)
+D. Data has no skew but needs normalization
+  - StandardScaler, MinMaxScaler
 
-#### Standardization:
+  **After transforming, scaling makes more sense.**
 
+#### StandardScaler
   - $z = \frac{x - \mu}{\sigma}$.
       - 𝑥 = original value
       - 𝜇 = mean of the original data
