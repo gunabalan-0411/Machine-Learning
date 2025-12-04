@@ -41,5 +41,43 @@ D. Data has no skew but needs normalization
   - Much more easy way to do the above is using TransformedTargetRegressor(regression_model, transformer = anytransformer)
 
 #### Custom Transformers
-  - By using sklearn.preprocessing FunctionTransformer(), we can pass a custom function and thereby we can also combine two features while computing.
+  In Two ways
+  1. By using sklearn.preprocessing FunctionTransformer(), we can pass a custom function and thereby we can also combine two features while computing.
+  2. A transformer class or function is
+    - takes X (input data)
+    - learns something from it (in fit()) --> mean_, scale_
+    - transforms the data (in transform()) --> Uses what was learned in fit() to change the data.: subtract mean, divide by std
+    - fit_transform(X) is optional, usually comes with if we inherit TransformerMixin
+  3. Why inherit from BaseEstimator and TransformerMixin
+       - get_params(), set_params() these are useful in gridsearchcv
+       - TransformerMixin gives the optional fit_transform(X)
+     
+  ```python
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.utils.validation import check_array, check_is_fitted
+
+class StandardScalerClone(BaseEstimator, TransformerMixin):
+  def __init__(self, with_mean = True):
+    self.with_mean = with_mean
+  def fit(self, X, y=None):
+    # data validation
+    X = check_array(X)
+    # This is what we learn in fit function
+    self.mean_ = X.mean(axis = 0)
+    self.scale_ = X.std(axis = 0)
+    self.n_features_in_ = X.shape[1]
+    return self # should always return self to avoid base functionality interruption
+  def transform(self, X):
+    check_is_fitted(self)
+    X = check_array(X)
+    
+    assert self.n_features_in_ == X.shape[1]
+    if self.with_mean:
+      X = X - self.mean_
+    return X / self.scale_
+
+std_scaler = StandardScalerClone()
+std_scaler.fit(housing[['median_income']])
+std_scaler.transform(housing[['median_income']])
+  ```
   
