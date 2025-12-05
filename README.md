@@ -1,5 +1,7 @@
 ## Notes:
 
+- In Sklearn Machine learning fit always means that the model calculate or learn some stats from the data first
+- Predict means based on the information got from fit function, it will calculate or predict.
 
 
 ## Linear Regression
@@ -22,7 +24,7 @@ B. Data has outliers
 C. Data has multiple peaks (multimodal)
   - Bucketizing (binning)
   - One-hot encoding
-  - RBF kernel (for similarity)
+  - RBF(Radial Basis function) kernel (for similarity)
 D. Data has no skew but needs normalization
   - StandardScaler, MinMaxScaler
 
@@ -83,4 +85,9 @@ std_scaler.transform(housing[['median_income']])
 # One more example is in fit we can use Kmeans to find the cluster center and use rbf in transform to find the similarity of each value in features with cluster center.
 cluster center: [5, 10, 30], X = 12, it will calculate the similarity and brings nonlinearity for model 
   ```
-  
+### Pipeline
+  - Pipeline() helps to sequentially orchestrate the data transformation and prediction
+  - pipeline.fit, predict, transform is based last estimator and everything else before that will fit_transform.
+    
+## K Means
+k-means is a stochastic algorithm, meaning that it relies on randomness to locate the clusters, so if you want reproducible results, you must set the random_state parameter
