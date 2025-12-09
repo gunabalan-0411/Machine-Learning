@@ -88,6 +88,46 @@ cluster center: [5, 10, 30], X = 12, it will calculate the similarity and brings
 ### Pipeline
   - Pipeline() helps to sequentially orchestrate the data transformation and prediction
   - pipeline.fit, predict, transform is based last estimator and everything else before that will fit_transform.
-    
+  - by using ColumnTransformer, to perform numerical and text transformation all in one
+  - And use make_column_selector to automatically select columns based on data types.
+  ``` python
+  from sklearn.compose import ColumnTransformer
+  from sklearn.pipeline import Pipeline
+  from sklearn.impute import SimpleImputer
+  from sklearn.preprocessing import StandardScaler
+  from sklearn.pipeline import make_pipeline
+  from sklearn.compose import make_column_selector, make_column_transformer
+  
+  num_attribs = ["longitude", "latitude", "housing_median_age", "total_rooms",
+                 "total_bedrooms", "population", "households", "median_income"]
+  cat_attribs = ["ocean_proximity"]
+  
+  num_pipeline = Pipeline([
+      ("impute", SimpleImputer(strategy="median")),
+      ("standardize", StandardScaler()),
+  ])
+  
+  cat_pipeline = make_pipeline(
+      SimpleImputer(strategy="most_frequent"),
+      OneHotEncoder(handle_unknown="ignore")
+  )
+  
+  # preprocessing = ColumnTransformer([
+  #     ('num', num_pipeline, num_attribs),
+  #     ('cat', cat_pipeline, cat_attribs)
+  # ])
+  
+  # Automatically select the numerical and category columns
+  
+  preprocessing = make_column_transformer(
+      (num_pipeline, make_column_selector(dtype_include = np.number)),
+      (cat_pipeline, make_column_selector(dtype_include = object))
+  )
+  housing_preprocessed = preprocessing.fit_transform(housing)
+  ```
+### Cross val score and evaluation
+  - using sklearn.metrics , .model_selection to find root_mean_square_error, cross_val_score to find the model with minimum error
+  - 
 ## K Means
 k-means is a stochastic algorithm, meaning that it relies on randomness to locate the clusters, so if you want reproducible results, you must set the random_state parameter
+
