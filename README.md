@@ -126,8 +126,43 @@ cluster center: [5, 10, 30], X = 12, it will calculate the similarity and brings
   housing_preprocessed = preprocessing.fit_transform(housing)
   ```
 ### Cross val score and evaluation
+using cross_val_score to check how generalize the model is
+
   - using sklearn.metrics , .model_selection to find root_mean_square_error, cross_val_score to find the model with minimum error
-  - 
+
+### Finetuning model
+using gridsearchcv to perform hyperparameter tuning, includig cross val score
+```python
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.pipeline import Pipeline
+
+full_pipeline = Pipeline(
+    [
+        ('preprocessing', preprocessing),
+        ('random_forest', RandomForestRegressor(random_state=42))
+    ]
+)
+
+param_grid = [
+    {
+        'preprocessing__geo__n_clusters': [5,8,10],
+        'random_forest__max_features': [4,6,8]
+    },
+    {
+        'preprocessing__geo__n_clusters': [10, 15],
+        'random_forest__max_features': [6, 8, 10]
+    }
+]
+
+grid = GridSearchCV(full_pipeline, param_grid, cv=3, scoring = 'neg_root_mean_squared_error')
+
+grid.git(housing, housing_labels)
+grid._best_params
+```
+#### RandomizedSearchCV
+RandomizedSearchCV is often preferable, especially when the hyperparameter search space is large. This class can be used in much the same way as the GridSearchCV class, but instead of trying out all possible combinations it evaluates a fixed number of combinations, selecting a random value for each hyperparameter at every iteration.
+
 ## K Means
 k-means is a stochastic algorithm, meaning that it relies on randomness to locate the clusters, so if you want reproducible results, you must set the random_state parameter
 
