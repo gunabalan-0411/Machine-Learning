@@ -163,6 +163,30 @@ grid._best_params
 #### RandomizedSearchCV
 RandomizedSearchCV is often preferable, especially when the hyperparameter search space is large. This class can be used in much the same way as the GridSearchCV class, but instead of trying out all possible combinations it evaluates a fixed number of combinations, selecting a random value for each hyperparameter at every iteration.
 
+```python
+final_model = rand_search.best_estimator_
+final_model['random_forest'].feature_importance_ # print the feature importance score, so that we can remove features with low importance.
+```
+#### Confidence Interval
+Point estimate tells you “how good” your model is.
+Confidence interval tells you “how sure” you are.
+If your confidence interval is wide, the improvement is meaningless.
+bootstrap: Randomly resample from set of sample again and again, and see how RMSE changes.
+```python
+from scipy.stats import bootstrap
+def rmse(square_errors):
+  return np.sqrt(np.mean(square_errors))
+
+square_errors = (y_pred - y_test) ** 2
+
+ci = bootstrap([square_errors], rmse, confidence_level = 0.95, random_state = 42)
+print(ci.confidence_interval)
+
+#Old model: 41,500
+#New model CI: [41,200 , 41,300] ->Clear improvement → safe to deploy
+#New model CI: [39,521 , 43,702] ->Too much uncertainty → risky to deploy
+```
+
 ## K Means
 k-means is a stochastic algorithm, meaning that it relies on randomness to locate the clusters, so if you want reproducible results, you must set the random_state parameter
 
