@@ -186,6 +186,8 @@ print(ci.confidence_interval)
 #New model CI: [41,200 , 41,300] ->Clear improvement → safe to deploy
 #New model CI: [39,521 , 43,702] ->Too much uncertainty → risky to deploy
 ```
+#### Deployment of Models
+using joblib to save model in pkl format.
 
 ## K Means
 k-means is a stochastic algorithm, meaning that it relies on randomness to locate the clusters, so if you want reproducible results, you must set the random_state parameter
