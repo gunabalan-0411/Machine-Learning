@@ -192,3 +192,17 @@ using joblib to save model in pkl format.
 ## K Means
 k-means is a stochastic algorithm, meaning that it relies on randomness to locate the clusters, so if you want reproducible results, you must set the random_state parameter
 
+
+## Classification
+### Stochastic Gradient Descent (SGD) Classifier (Linear Model)
+* Production grade model for very large dataset and used for online training
+* Initialize weights randomly.
+* Pick one training sample (or a small batch).
+
+Make a prediction using current weights.
+
+Compute the loss (error) for that sample.
+
+Update weights in the opposite direction of the gradient:
+
+
