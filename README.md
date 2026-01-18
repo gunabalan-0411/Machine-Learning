@@ -202,9 +202,19 @@ k-means is a stochastic algorithm, meaning that it relies on randomness to locat
 * Compute the loss (error) for that sample.
 * Update weights in the opposite direction of the gradient:
 
-Evaluation:
-Precision = TP/ TP+FP
-Recall = TP/ TP+FN
-When it claims an image represents a 5, it is correct only 83.7% of the time. Moreover, it only detects 65.1% of the 5s
+### Evaluation:
+* $\text{Precision} = \frac{TP}{TP + FP}$
+* $\text{Recall} = \frac{TP}{TP + FN}$
+* When it claims an image represents a 5, it is correct only 83.7% of the time. Moreover, it only detects 65.1% of the 5s
+* F1 score is the harmonic mean of precision and recall
+* $\text{F1} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$
+
+The Precision/Recall Trade-Off
+<img width="879" height="394" alt="image" src="https://github.com/user-attachments/assets/bc8d095d-9637-4db6-8e4a-39b3fca5ef20" />
+
+
+
+
+
 
 
