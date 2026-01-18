@@ -198,11 +198,13 @@ k-means is a stochastic algorithm, meaning that it relies on randomness to locat
 * Production grade model for very large dataset and used for online training
 * Initialize weights randomly.
 * Pick one training sample (or a small batch).
+* Make a prediction using current weights.
+* Compute the loss (error) for that sample.
+* Update weights in the opposite direction of the gradient:
 
-Make a prediction using current weights.
-
-Compute the loss (error) for that sample.
-
-Update weights in the opposite direction of the gradient:
+Evaluation:
+Precision = TP/ TP+FP
+Recall = TP/ TP+FN
+When it claims an image represents a 5, it is correct only 83.7% of the time. Moreover, it only detects 65.1% of the 5s
 
 
