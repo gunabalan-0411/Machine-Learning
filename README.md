@@ -216,6 +216,7 @@ The Precision/Recall Trade-Off
 ROC (Receiver Operating Characteristic) Curve
 * the ROC curve plots the true positive rate (another name for recall) against the false positive rate (FPR)
 
+[study ROC, ROC_AUC_Score, Precision_recall curve with chatgpt]
 
 
 
