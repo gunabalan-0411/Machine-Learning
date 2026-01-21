@@ -208,9 +208,14 @@ k-means is a stochastic algorithm, meaning that it relies on randomness to locat
 * When it claims an image represents a 5, it is correct only 83.7% of the time. Moreover, it only detects 65.1% of the 5s
 * F1 score is the harmonic mean of precision and recall
 * $\text{F1} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$
-
+* In text classification, based on precision recall we determine the decision_function threshold value by plotting the precision_recall_curve along with threshold.
+* Suppose based on the projet, we determine 90% precision then choose the thresold which will provide that precision in precision_recall graph.
 The Precision/Recall Trade-Off
 <img width="879" height="394" alt="image" src="https://github.com/user-attachments/assets/bc8d095d-9637-4db6-8e4a-39b3fca5ef20" />
+
+ROC (Receiver Operating Characteristic) Curve
+* the ROC curve plots the true positive rate (another name for recall) against the false positive rate (FPR)
+
 
 
 
