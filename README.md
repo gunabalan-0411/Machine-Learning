@@ -194,6 +194,7 @@ k-means is a stochastic algorithm, meaning that it relies on randomness to locat
 
 
 ## Classification
+### Binary Classification
 ### Stochastic Gradient Descent (SGD) Classifier (Linear Model)
 * Production grade model for very large dataset and used for online training
 * Initialize weights randomly.
@@ -214,9 +215,34 @@ The Precision/Recall Trade-Off
 <img width="879" height="394" alt="image" src="https://github.com/user-attachments/assets/bc8d095d-9637-4db6-8e4a-39b3fca5ef20" />
 
 ROC (Receiver Operating Characteristic) Curve
+* Many classifiers don’t just output 0 or 1 directly, Instead, they output a probability score: Ex: if score ≥ 0.5 → predict Positive
+* Classification performance changes depending on threshold.
+* ROC curve shows how performance changes across all thresholds.
 * the ROC curve plots the true positive rate (another name for recall) against the false positive rate (FPR)
+* $\text{FPR} = \frac{FP}{FP + TN}$
+* The FPR (also called the fall-out) is the ratio of negative instances that are incorrectly classified as positive.
+* X-axis --> FPR, Y-axis --> TPR is plotted against all 0 to 1.0 threshold
+* Random classifier If model is guessing: the ROC curve becomes a diagonal line: TPR = FPR
+Area Under the Curve (AUC)
+* It is the area under ROC curve (0 to 1).
+* AUC = 1.0 → perfect classifierc.
+* So AUC answers: “How good is this model at separating positives vs negatives using scores?”
 
-[study ROC, ROC_AUC_Score, Precision_recall curve with chatgpt]
+ROC vs Precision-Recall (very important)
+
+* When dataset is highly imbalanced, ROC can still look very good even if model is bad.
+* That’s why:
+* ROC is good generally
+* PR curve is better when positives are rare
+Example:
+* Fraud detection (1% fraud)
+* You should prefer Precision-Recall curve.
+
+### Multiclass Classification
+
+* Support Vector Machine Classifiers scale poorly with the size of the training set
+* When Multi-class data passed on to Scikit learn, it automatically train One vs One class (for 10 classes it will 45 model kind of).
+* 
 
 
 
