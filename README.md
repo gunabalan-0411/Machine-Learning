@@ -241,9 +241,17 @@ Example:
 ### Multiclass Classification
 
 * Support Vector Machine Classifiers scale poorly with the size of the training set
-* When Multi-class data passed on to Scikit learn, it automatically train One vs One class (for 10 classes it will 45 model kind of).
-* 
+* When Multi-class data passed on to Scikit learn, it automatically train One vs One class (for 10 classes it will 45 model kind of). and the decision score is calculated for all target classes.
+* There is dedicated class in sklearn to perform it as well. `from sklearn.multiclass import OneVsRestClassifier`
+* Using confusion matrix to plot and check with class is lacking to be predicted and based on that we can add features
+* Ex: writing an algorithm to count the number of closed loops (e.g., 8 has two, 6 has one, 5 has none).
+* we can plot images as confusion matrix (ex: actual 3 but predicted 5 and get that feature to plot that in plt)
 
+### Multi-Label Classification
+* for the model that do not support multi-label classifier by default(such as svc), we can create one model for one label or we can use ClassifierChain from sklearn.multioutput
+
+### Multi-output Classification
+* the classifier’s output is multilabel (one label per pixel) and each label can have multiple values (pixel intensity ranges from 0 to 255).
 
 
 
