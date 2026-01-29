@@ -3,6 +3,12 @@
 - In Sklearn Machine learning fit always means that the model calculate or learn some stats from the data first
 - Predict means based on the information got from fit function, it will calculate or predict.
 
+## K Nearest Neighbors
+* hyper-parameter:
+  * weights: uniform, distance // weight for ranking (uniform make each neighbor equal, decision based on count alone) but distance is closest more weight.
+  * n_neighbors: range(1 to ...) // no of neighbors to consider
+* new sample x will be compare against all sample and choose the k nearest neighbors and choose the one that wins by weights.
+
 
 ## Linear Regression
 
@@ -160,6 +166,11 @@ grid = GridSearchCV(full_pipeline, param_grid, cv=3, scoring = 'neg_root_mean_sq
 grid.git(housing, housing_labels)
 grid._best_params
 ```
+Important variables from grid_search
+* grid_search.best_params_ 
+* grid_search.best_score_
+* grid_search.best_estimator_
+
 #### RandomizedSearchCV
 RandomizedSearchCV is often preferable, especially when the hyperparameter search space is large. This class can be used in much the same way as the GridSearchCV class, but instead of trying out all possible combinations it evaluates a fixed number of combinations, selecting a random value for each hyperparameter at every iteration.
 
@@ -252,7 +263,7 @@ Example:
 
 ### Multi-output Classification
 * the classifier’s output is multilabel (one label per pixel) and each label can have multiple values (pixel intensity ranges from 0 to 255).
-
+* Ex: we can add noise to digit dataset and using a classifier to predict clean image, here multilabel is (0-9) and each pixel values can have multiple values range from 0-255
 
 
 
