@@ -249,6 +249,9 @@ Example:
 * Fraud detection (1% fraud)
 * You should prefer Precision-Recall curve.
 
+Error rate calculation (- 1 means, it brings the how much percentage up/ shit by reducing 1 to ratio)
+* error_rate = (1- new_accuracy /1 - old_accuracy) - 1
+
 ### Multiclass Classification
 
 * Support Vector Machine Classifiers scale poorly with the size of the training set
@@ -268,4 +271,7 @@ Example:
 
 
 
+# Computer Vision
 
+## Data Augmentation
+* from scipy.ndimage import shift, shift(img, (dy, dx)) will reshape the image.
