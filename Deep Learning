@@ -1,0 +1,430 @@
+# CNN (Convolutional Neural Network) — How It Works + Architecture (Easy + In-Depth)
+
+This canvas explains CNNs from the ground up:
+
+* why CNN is needed
+* convolution operation
+* filters/kernels
+* feature maps
+* padding/stride
+* pooling
+* full CNN architecture
+* training basics
+* popular CNN families
+* interview questions
+
+---
+
+# 1) Why do we need CNN?
+
+## Problem with normal neural networks for images
+
+Images have 2D structure.
+Example: 28×28 image → 784 pixels.
+
+If we use a fully connected neural network:
+
+* input layer has 784 neurons
+* each neuron connects to all hidden neurons
+
+### Issues
+
+1. Too many parameters
+2. Overfitting risk
+3. Doesn’t exploit local patterns (edges, corners)
+
+---
+
+# 2) Core idea of CNN
+
+CNN learns **local features** using small filters.
+
+Instead of connecting everything to everything:
+✅ CNN connects each neuron only to a local region.
+
+### Example intuition
+
+To recognize a face:
+
+* first detect edges
+* then eyes/nose
+* then whole face
+
+CNN learns features in this hierarchy.
+
+---
+
+# 3) Convolution Operation (most important)
+
+## 3.1 What is a convolution filter / kernel?
+
+A kernel is a small matrix (like 3×3).
+
+Example kernel:
+
+```
+[ 1  0 -1
+  1  0 -1
+  1  0 -1 ]
+```
+
+This detects vertical edges.
+
+---
+
+## 3.2 How convolution works
+
+You slide the kernel across the image.
+
+At each location:
+
+* multiply kernel values with pixel values
+* sum them
+
+This produces **one output pixel**.
+
+That output grid is called a **feature map**.
+
+---
+
+## 3.3 Why it works
+
+Because kernel learns patterns:
+
+* edge detector
+* curve detector
+* texture detector
+
+And those patterns repeat in different image locations.
+
+So CNN shares weights across image.
+
+✅ This is called **parameter sharing**.
+
+---
+
+# 4) Feature maps and channels
+
+## 4.1 Channels
+
+A color image has 3 channels:
+
+* R, G, B
+
+So input shape:
+
+* `(H, W, 3)`
+
+A convolution kernel for RGB has depth 3:
+
+* `(kH, kW, 3)`
+
+---
+
+## 4.2 Multiple filters
+
+CNN uses many kernels.
+
+If we use 64 kernels:
+
+* output will have 64 feature maps
+
+So output shape:
+
+* `(H_out, W_out, 64)`
+
+Each filter learns a different pattern.
+
+---
+
+# 5) Stride and Padding
+
+## 5.1 Stride
+
+Stride = step size while moving kernel.
+
+* stride=1 → moves 1 pixel at a time
+* stride=2 → moves 2 pixels
+
+Higher stride:
+✅ reduces output size (downsampling)
+
+---
+
+## 5.2 Padding
+
+Padding adds extra border around image.
+
+Types:
+
+### Valid padding
+
+* no padding
+* output shrinks
+
+### Same padding
+
+* pad so output has same height/width
+
+Why padding is needed?
+
+* preserve edge information
+* control output size
+
+---
+
+## 5.3 Output size formula
+
+For 1 dimension:
+
+`out = floor((n + 2p - f)/s) + 1`
+
+Where:
+
+* n = input size
+* p = padding
+* f = filter size
+* s = stride
+
+---
+
+# 6) Activation function
+
+After convolution, we apply non-linearity.
+
+Most common:
+
+* ReLU
+
+`ReLU(x) = max(0, x)`
+
+Why?
+
+* helps learn complex patterns
+
+---
+
+# 7) Pooling layer
+
+Pooling reduces spatial size.
+
+## 7.1 Max Pooling (common)
+
+Example: 2×2 pooling
+
+* choose maximum value
+
+Benefits:
+✅ reduces computation
+✅ makes model robust to small shifts
+
+---
+
+## 7.2 Average Pooling
+
+* takes average
+
+Used sometimes.
+
+---
+
+# 8) Typical CNN Architecture
+
+### Standard CNN pipeline
+
+```
+Input Image
+  ↓
+[Conv → ReLU → Pool]
+  ↓
+[Conv → ReLU → Pool]
+  ↓
+[Conv → ReLU]
+  ↓
+Flatten
+  ↓
+Dense / Fully connected
+  ↓
+Softmax / Sigmoid output
+```
+
+---
+
+# 9) What does each stage learn?
+
+## Early layers
+
+* edges
+* gradients
+
+## Middle layers
+
+* textures
+* corners
+
+## Deep layers
+
+* object parts
+* whole object concept
+
+---
+
+# 10) CNN Training Basics
+
+Training is same as other NNs:
+
+1. forward pass
+2. compute loss
+3. backprop
+4. update weights
+
+Loss functions:
+
+* classification: cross entropy
+* regression: MSE
+
+Optimizers:
+
+* SGD
+* Adam
+
+---
+
+# 11) CNN Special Concepts
+
+## 11.1 Receptive field
+
+Receptive field = region of input affecting a neuron.
+
+As layers go deeper:
+
+* receptive field increases
+
+So deep neurons "see" larger part of image.
+
+---
+
+## 11.2 Translation invariance
+
+CNN becomes robust to shifting object slightly.
+
+Pooling helps.
+
+---
+
+## 11.3 Batch Normalization
+
+Normalizes activations.
+
+Benefits:
+
+* faster training
+* stable gradients
+
+---
+
+## 11.4 Dropout
+
+Regularization to reduce overfitting.
+
+---
+
+# 12) Popular CNN Architectures (must know)
+
+## LeNet
+
+Early CNN for digits.
+
+## AlexNet
+
+Started deep learning boom.
+
+## VGG
+
+Very deep with 3×3 convs.
+
+## ResNet
+
+Key idea: **skip connections**
+Solves vanishing gradients.
+
+## Inception
+
+Multi-scale filters in parallel.
+
+## MobileNet
+
+Efficient for mobile.
+Uses depthwise separable conv.
+
+---
+
+# 13) CNN vs Transformer for vision
+
+### CNN
+
+* local inductive bias
+* efficient for small datasets
+
+### Vision Transformer (ViT)
+
+* attention-based
+* needs large data
+* captures global context
+
+---
+
+# 14) Tricky Interview Questions
+
+## Q1) Why CNN has fewer parameters than Dense NN?
+
+Because:
+
+* local connectivity
+* weight sharing
+
+---
+
+## Q2) What does padding do?
+
+* controls output size
+* preserves edge pixels
+
+---
+
+## Q3) Why max pooling?
+
+* downsample
+* invariance
+* reduce computation
+
+---
+
+## Q4) What is receptive field?
+
+* part of input influencing neuron
+
+---
+
+## Q5) Why ResNet is important?
+
+Skip connection improves gradient flow.
+
+---
+
+# 15) Summary (1-minute)
+
+* CNN learns image features using convolution filters
+* convolution produces feature maps
+* multiple filters learn multiple patterns
+* padding/stride control output shape
+* pooling reduces dimension
+* deeper layers learn higher-level features
+
+---
+
+If you want, I can also add:
+
+1. small numeric convolution example
+2. full CNN parameter count example
+3. PyTorch code template for CNN classifier
