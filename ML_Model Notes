@@ -98,12 +98,6 @@ Example:
 
 ## Offline vs Online learning (Correction)
 
-Your note:
-
-> one time | on the go learning (gradient descent)
-
-✅ Better phrasing:
-
 ### Offline / Batch Learning
 
 * Train once on a fixed dataset.
@@ -182,8 +176,6 @@ Common types:
 * Validation: tune hyperparameters
 * Test: final evaluation (never touch during tuning)
 
-✅ Your leakage note is correct.
-
 ---
 
 ## 4.2 Cross Validation
@@ -233,7 +225,7 @@ Adds penalty:
 * reduces large weights
 * good when many correlated features
 
-### Lasso Regression (L1) (spelling fix)
+### Lasso Regression (L1) 
 
 Adds penalty:
 `Loss = MSE + λ Σ |θ|`
@@ -264,8 +256,6 @@ Loss:
 
 * Log loss / binary cross entropy
 
-✅ Your cost function idea is correct.
-
 Imbalance handling:
 
 * `class_weight="balanced"`
@@ -274,8 +264,6 @@ Imbalance handling:
 ---
 
 ## 6.2 k-NN (Classification + Regression)
-
-✅ Correction: k-NN is **supervised**, not unsupervised.
 
 Idea:
 
@@ -372,7 +360,7 @@ Example:
 * bagging + feature randomness
 * strong baseline for tabular
 
-✅ Correction: Random Forest is **less sensitive**, not “won’t affect by outlier”.
+Random Forest is **less sensitive**, not “won’t affect by outlier”.
 
 ---
 

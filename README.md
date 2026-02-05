@@ -34,6 +34,14 @@ C. Data has multiple peaks (multimodal)
 D. Data has no skew but needs normalization
   - StandardScaler, MinMaxScaler
 
+* If x is left-skewed:
+* Make it right-skew: x_reflect = max(x) + 1 - x
+* Then apply log/sqrt on x_reflect
+📌 Typical examples:
+  * Exam marks where most score high
+  * “Battery health %” where most are near 100%
+  * “Customer satisfaction rating” mostly 4–5
+
   **After transforming, scaling makes more sense.**
 
 #### StandardScaler
@@ -268,10 +276,8 @@ Error rate calculation (- 1 means, it brings the how much percentage up/ shit by
 * the classifier’s output is multilabel (one label per pixel) and each label can have multiple values (pixel intensity ranges from 0 to 255).
 * Ex: we can add noise to digit dataset and using a classifier to predict clean image, here multilabel is (0-9) and each pixel values can have multiple values range from 0-255
 
-
-
-
-# Computer Vision
-
 ## Data Augmentation
 * from scipy.ndimage import shift, shift(img, (dy, dx)) will reshape the image.
+
+## Model Training
+
