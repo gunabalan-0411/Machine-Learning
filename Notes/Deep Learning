@@ -1,4 +1,4 @@
-# Neural Network
+# Neural Network (Fundamental)
 
 ## Vanilla Neural Network
 
@@ -25,7 +25,73 @@ Let's say we have two hidden layer
 * The neurons in hidden layer *1* has some numbers that represents the edges of these shapes
 
 So as a whole we need a mechanism that converts these pixels to edges to shapes/ pattern to digits.
-* Now all the summation of activatios + weights (w1a1 + w2a2 ... w784a784)
+* if we multiple weights to each 786 neurons and by assuming some pixels becomes 0 and some become 1 so form an edge.
+* Now from input layer all the summation of activations * weights (w1a1 + w2a2 ... w784a784) to get a weighted sum.
+* but we need the activations to be in between 0 to 1, so we use sigmoid function to get that. (1/1+e^-z), z is linear equation.
+* neg values towards 0 and positive values towards 1, and after input 0 the sigmoid value will be getting high (look at the graph)
+* Meaning so basically the activition here is how positive is this?/ how positive to relevant weighted sum.
+* But if we don't want the weighted sum to be increased after 0, but activate meaningfully when input cross 10, then we can subtract a *bias* (like 10) from weighted sum before sigmoid
+
+* Now all the above is for just one neuron in first hidden layer.
+* Now each neuron from hidden layer connect to all 786 neuron and each has own weights and bias.
+
+* The pattern like weight sum, bias repeated for subsequent layers.
+
+* *Learning* is actually finding the right weights and bias for all neurons
+
+
+#### How the calculation happen
+* Matrix vector product (multiple and sum)
+- [w0_1, w0_2, ... w0_n]   [a0]    [?]    [b1]
+- [     ,    .  ,      ] * [..] =  [..] + [..]   = a(1) = 	σ(Wa + b)
+- [wk_1, wk_2, ... wk_n]   [an]    [?]    [bn]
+
+* This matrix multiplication helps coding to solve it faster.
+* So each neuron in hidden layer is kind of a function which inputs numbers and outputs number
+* similarly entire neural network
+
+* [Note] Modern Neural network using ReLu(max(0, a)) than sigmoid
+
+### Gradient descent
+* Initially we randomize those 786 * 16 + 16 * 16 + 16 * 10 + 16 * 2 = ~13K parameters 
+* So we first calculate the cost (predicated - actual), if its more then its right parameter or bad parameter value
+* We get the average of cost of all the input images, to check how lousy the network is or not.
+* So if we want randomly assign some numbers and getting the cost value towards is 0 is extremely computational
+* Gradient descent method is an optimized way to do that
+* In a space of weight and cost value (a wave like graph will be formed with various global minimum).
+* So if we find the lowest possible global minimum where cost is  lowest and weight is lowest that is optimal weights.
+* But which direction we move in the waving graph?
+  * By calculating slope, if slope is positive shift to left, negative shift to right (basically move to opposite direction of slope)
+  * The image we can imagine is like rolling down a hill.
+* But there are many possible valleys found in that hill.
+* using calculus further to find the steepest hill and then move to the direction of global minimum
+* The negative gradient tells you how to change the weights and biases so the error goes down as fast as possible.
+* What is a gradient? At your current position, ask this question: “If I slightly change each weight and bias, which direction makes the cost increase the fastest?”
+* Why negative gradient? Negative gradient = steepest downhill direction
+
+### Backpropagation (How neural network learn)
+* Backpropagation is the algorithm helps to calculate the gradient we talk above.
+* From the last layer we note the list desired changes of weights & bias to choose a particular target variable.
+* Now in second to last layour we do the same by note the desired changes to choose individual neuron in last layer.
+* this goes up till earlier neuron, by moving backwards.
+* by iterating all example data we will get an average weights for each target variable
+* and this average weights is proportional to negative gradient.
+* And instead of calculating this step (negative gradient) for all sample data. If we split into mini batches and the find the steps accordingly, it will be easy to find the next optimal step/ direction, it called stochatic Gradient descent.
+* this looks like a plot of stubmled direction but even if its stubmled its faster to reach the global minimum.
+
+* Backpropagation uses the chain rule to figure out how a small change in each weight affects the final error, step by step, backwards.
+* Calculus is just a tool to measure sensitivity. Change something a little Observe how much the output changes.
+* That “how much” is what calculus measures.
+* A derivative simply means: “If I nudge this value a tiny bit, how much does the result change?”
+* A neural network is not one step, So the weight does not directly affect the loss. It affects something → which affects something → which affects something → which affects loss.
+* effect of A on B × effect of B on C × effect of C on brightness. That multiplication is the chain rule.
+* Why backpropagation? Each step: assigns blame tells how responsible each weight was, This backward blame assignment uses the chain rule. This is why we need the chain rule.
+* Calculus tells us how sensitive things are. The chain rule tells us how sensitivity flows through a chain. Backprop uses the chain rule to send error information backward and adjust each weight correctly.
+
+
+
+Easy intuition when a 786 neuron passed it first light up the edges in hidden layer one and the pattern in layer 2 and then the digits.
+
 
 
 
