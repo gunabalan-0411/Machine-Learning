@@ -670,9 +670,6 @@ Missing ✅:
 
 ## 13.3 MCP (Model Context Protocol)
 
-You noted MCP.
-✅ Basic meaning:
-
 * standard way for tools/servers to provide context to LLM systems.
 
 ---
@@ -879,6 +876,22 @@ Logistic regression is trained by minimizing log loss using:
 * Newton-Raphson
 * Quasi-Newton (LBFGS) (common in sklearn)
 * Coordinate descent (useful for L1)
+
+Dataset: 1,000,000 rows
+
+GD:
+* Computes gradient using all 1,000,000 rows
+* Updates once per epoch
+
+SGD:
+* Uses 1 row
+* Updates 1,000,000 times per epoch
+
+SGD
+* “Take steps in the direction of the gradient.”
+
+Adam
+* “Take smarter steps by remembering past gradients and adjusting step sizes automatically.”
 
 ✅ In sklearn, solver choices:
 

@@ -422,9 +422,3 @@ Skip connection improves gradient flow.
 * deeper layers learn higher-level features
 
 ---
-
-If you want, I can also add:
-
-1. small numeric convolution example
-2. full CNN parameter count example
-3. PyTorch code template for CNN classifier
