@@ -1,3 +1,40 @@
+# Neural Network
+
+## Vanilla Neural Network
+
+### Input layer
+* Neuron: Thing that holds a number [0-1]
+* So 28*28 input image when passed to NN has 784 (28*28) neurons
+* here each neuron represents the grayscale value (0-black, 1-white)
+* This number inside the neuron is called its activation.
+
+### Hidden layer
+* Here the number of layors and number of neuron in each layour is Arbitrary(selected for convenience, convention, or practicality, not because it is the only correct option) choice
+
+### Output Layor
+
+
+* The way the network operates, Activation in one neuron layer determines the activation in other layer till output layer
+* So how does one layer influence the next? or How does trainig work?
+
+Let's say we have two hidden layer
+
+* The neurons in hidden layer *2* has some numbers representing various shapes (o, /, |, -) with which each digits can be formed if selected rightly.
+* So how these shapes are calculated and stored in each neuron in hidden layer *2*?
+* Ex: recognizing a loop or circle shape is a sub-problem, in first we find out the edges.
+* The neurons in hidden layer *1* has some numbers that represents the edges of these shapes
+
+So as a whole we need a mechanism that converts these pixels to edges to shapes/ pattern to digits.
+* Now all the summation of activatios + weights (w1a1 + w2a2 ... w784a784)
+
+
+
+
+
+* [NOTE] The Transformer MLP is a vanilla feed-forward neural network mathematically, but it plays a very specialized, position-wise role and is not equivalent to a standalone vanilla MLP model.
+
+
+
 # CNN (Convolutional Neural Network) — How It Works + Architecture (Easy + In-Depth)
 
 This canvas explains CNNs from the ground up:
