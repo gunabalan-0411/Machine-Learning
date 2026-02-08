@@ -115,6 +115,20 @@ Example:
 ```
 TF‑IDF = TF × log(total_docs / docs_with_word)
 ```
+### Term Frequency (TF)
+$$
+\mathrm{TF}(t, d) =
+\frac{\text{Number of times term } t \text{ appears in document } d}
+{\text{Total number of terms in document } d}
+$$
+### Inverse Document Frequency (IDF)
+$$
+\mathrm{IDF}(t, D) =
+\log\left(
+\frac{\text{Total number of documents in corpus } D}
+{\text{Number of documents containing term } t}
+\right)
+$$
 
 ### Intuition
 
@@ -841,10 +855,6 @@ There is **NO interaction between tokens** inside the MLP.
 
 ---
 
-## What You Noted (Corrected and Organized)
-
-Your intuition was good. Here is the **clean, exact version**.
-
 ### Core idea
 
 * The *facts* and *knowledge* of the model live mainly in the **MLP weights**.
@@ -1029,11 +1039,3 @@ This is why it is called **position-wise FFN**.
 * Most parameters live in MLP
 
 ---
-
-If you want next, I can:
-
-* Merge **Attention + MLP** into one unified flow
-* Show **numerical toy example** for MLP
-* Explain **why GELU works better than ReLU here**
-
-Just tell me.
