@@ -6,7 +6,7 @@
 * Neuron: Thing that holds a number [0-1]
 * So 28*28 input image when passed to NN has 784 (28*28) neurons
 * here each neuron represents the grayscale value (0-black, 1-white)
-* This number inside the neuron is called its activation.
+* This number inside the neuron is called its activation
 
 ### Hidden layer
 * Here the number of layors and number of neuron in each layour is Arbitrary(selected for convenience, convention, or practicality, not because it is the only correct option) choice
