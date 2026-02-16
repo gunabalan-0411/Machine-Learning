@@ -1039,3 +1039,17 @@ This is why it is called **position-wise FFN**.
 * Most parameters live in MLP
 
 ---
+
+Intuition
+
+Think of it like reading:
+* Encoder (BERT) → can look left and right
+* Decoder (GPT) → can only look left
+* Encoder–decoder → decoder looks left + consults encoder notes
+* But in all cases: Self-attention is always the core mechanism.
+
+Bottom line
+* GPT is not special for having self-attention.
+* All Transformer decoders use masked self-attention.
+* GPT differs because it removes cross-attention and the encoder.
+* Understanding in GPT emerges entirely from stacked masked self-attention.
