@@ -4,14 +4,14 @@
 
 ### Input layer
 * Neuron: Thing that holds a number [0-1]
-* So 28*28 input image when passed to NN has 784 (28*28) neurons
+* So 28 * 28 input image when passed to NN has 784 (28*28) neurons
 * here each neuron represents the grayscale value (0-black, 1-white)
 * This number inside the neuron is called its activation
 
 ### Hidden layer
-* Here the number of layors and number of neuron in each layour is Arbitrary(selected for convenience, convention, or practicality, not because it is the only correct option) choice
+* Here the number of layers and number of neuron in each layour is Arbitrary(selected for convenience, convention, or practicality, not because it is the only correct option) choice
 
-### Output Layor
+### Output Layer
 
 
 * The way the network operates, Activation in one neuron layer determines the activation in other layer till output layer
@@ -27,7 +27,7 @@ Let's say we have two hidden layer
 So as a whole we need a mechanism that converts these pixels to edges to shapes/ pattern to digits.
 * if we multiple weights to each 786 neurons and by assuming some pixels becomes 0 and some become 1 so form an edge.
 * Now from input layer all the summation of activations * weights (w1a1 + w2a2 ... w784a784) to get a weighted sum.
-* but we need the activations to be in between 0 to 1, so we use sigmoid function to get that. (1/1+e^-z), z is linear equation.
+* but we need the activations to be in between 0 to 1, so we use sigmoid function to get that. (1/1+e^-z).
 * neg values towards 0 and positive values towards 1, and after input 0 the sigmoid value will be getting high (look at the graph)
 * Meaning so basically the activition here is how positive is this?/ how positive to relevant weighted sum.
 * But if we don't want the weighted sum to be increased after 0, but activate meaningfully when input cross 10, then we can subtract a *bias* (like 10) from weighted sum before sigmoid
@@ -41,11 +41,12 @@ So as a whole we need a mechanism that converts these pixels to edges to shapes/
 
 
 #### How the calculation happen
+```python
 * Matrix vector product (multiple and sum)
 - [w0_1, w0_2, ... w0_n]   [a0]    [?]    [b1]
 - [     ,    .  ,      ] * [..] =  [..] + [..]   = a(1) = 	σ(Wa + b)
 - [wk_1, wk_2, ... wk_n]   [an]    [?]    [bn]
-
+```
 * This matrix multiplication helps coding to solve it faster.
 * So each neuron in hidden layer is kind of a function which inputs numbers and outputs number
 * similarly entire neural network

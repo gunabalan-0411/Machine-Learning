@@ -85,3 +85,33 @@ R^2 = 1 - (3/8) = 0.625
 ## Interview one-liner ✅
 
 **R² is the proportion of variance in the target explained by a regression model compared to predicting the mean.**
+
+### Why we use Adjusted R² (short)
+
+* Regular **R² always increases** when you add more features—even useless ones.
+* This can give a **false sense of model improvement**.
+* **Adjusted R² penalizes extra predictors**, so it only increases when a new feature genuinely improves the model.
+* Hence, it is better for **comparing models with different numbers of features**.
+
+---
+
+### Formula
+
+$
+R^2_{\text{adj}} = 1 - (1 - R^2)\frac{n - 1}{n - p - 1}
+$
+
+where:
+
+* (R^2) = coefficient of determination
+* (n) = number of observations
+* (p) = number of predictors (features)
+
+---
+
+### Key property
+
+* If a new feature is useless → Adjusted R² **decreases**
+* If a new feature is useful → Adjusted R² **increases**
+
+This makes it a more reliable metric for model selection.
