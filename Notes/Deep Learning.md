@@ -60,7 +60,7 @@ So as a whole we need a mechanism that converts these pixels to edges to shapes/
 * So if we want randomly assign some numbers and getting the cost value towards is 0 is extremely computational
 * Gradient descent method is an optimized way to do that
 * In a space of weight and cost value (a wave like graph will be formed with various global minimum).
-* So if we find the lowest possible global minimum where cost is  lowest and weight is lowest that is optimal weights.
+* So if we find the lowest possible global minimum where cost is  lowest that is optimal weights.
 * But which direction we move in the waving graph?
   * By calculating slope, if slope is positive shift to left, negative shift to right (basically move to opposite direction of slope)
   * The image we can imagine is like rolling down a hill.
